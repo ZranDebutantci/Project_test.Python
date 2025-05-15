@@ -1,0 +1,101 @@
+#importé le modul tkinter
+
+from tkinter import*
+import tkinter as tk
+import webbrowser
+
+
+def Cookie_chocolat ():
+    webbrowser.open_new("https://www.adeline-cuisine.fr/recettes/cookies-tout-chocolat-recette-facile/")
+
+def Cookie_vegan():
+    webbrowser.open_new("https://barbarafrenchvegan.com/cookies-vegan-aux-pepites-de-chocolat-hyper-moelleux-chewy-vegan-chocolate-chips-cookies/")
+
+def Cookie_sains():
+    webbrowser.open_new("https://www.delicesweet.fr/cookies-sans-sucre/")
+
+
+def over_inter_2():
+    #fermer la 1e fenetre
+    Cookie.withdraw()
+
+#creation mtn de F2
+    inter2  = tk.Toplevel()
+    inter2.title("Recette_de_Cookies")
+    inter2.minsize(350, 380)
+    inter2.iconbitmap("cap.ico")
+    inter2.config(background='#FFB73B')M
+
+    #les frames2
+    frame2 = Frame(inter2, bg='#FFB73B')
+    frame2_boutton = tk.Frame(frame2,bg='#FFB73B')
+    frame2_boutton.pack(pady=30)
+
+
+    # Ajout du texte
+    label_titl2 = Label(frame2, text="Cookies.web", font=("Algerian", 30), bg='#FFB73B', fg='#4D4D4D')
+    label_titl2.pack(expand=YES)
+
+    #ajout des bouttons
+
+    y_button1 = tk.Button(frame2_boutton,text='Cookies tout 🍫',font=("lucida Calligraphy",15),bg='#FF662A',fg='white',command=Cookie_chocolat)
+    y_button1.pack(side="left",padx=10)
+
+    y_button2 = tk.Button(frame2_boutton, text='Cookies Vegan', font=("lucida Calligraphy", 15), bg='#FF662A',fg='green', command=Cookie_vegan)
+    y_button2.pack(side="left", padx=10)
+
+    y_button3 = tk.Button(frame2_boutton, text='Cookies Saains', font=("lucida Calligraphy", 15), bg='#FF662A',fg='#0B245C', command=Cookie_sains)
+    y_button3.pack(side="left", padx=10)
+
+#afficher la frame
+    frame2.pack(expand=YES)
+
+
+#création de la fenetre principal et sa personnalisation
+Cookie= tk.Tk()
+
+Cookie.title("Recette_de_Cookie")
+Cookie.minsize(350,380)
+Cookie.iconbitmap("cap.ico")
+Cookie.config(background='#FFB73B')
+
+#creation de la frame
+frame = Frame(Cookie,bg='#FFB73B')
+
+#cree une sous boite
+droite_frame = tk.Frame(frame,bg='#FFB73B')
+
+#Ajout du texte
+label_title= Label(droite_frame, text="Cuissine à Cookies.web",font=("Algerian",20),bg='#FFB73B',fg='black')
+label_title.pack(side=TOP)
+
+#ajout d'image
+width = 300
+height = 300
+ima_acceil = PhotoImage(file="Capt_Cookie.png").zoom(5).subsample(18)
+canvas = Canvas(frame,width=width,height=height,bg='#FFB73B',bd=0,highlightthickness=0)
+canvas.create_image(width/2,height/2,image=ima_acceil)
+canvas.grid(row=0,column=0,sticky=W)
+
+#Ajout second texte
+label_subtitle= Label (droite_frame, text="Bienvenue "
+                                          "Dans notre cuissine à cookies issue "
+                                          "de sites web~!",font=("lucida Calligraphy",18),bg='#FFB73B',fg='#261887')
+label_subtitle.pack()
+
+#placer le boutton menant a la F2
+enter_F2 = Button(droite_frame,text="Entrer",font=("Arial"),bg='black',fg='white',command=over_inter_2)
+enter_F2.pack()
+
+#placer la sous boite à droite de la frame principal
+droite_frame.grid(row=1 ,column=0,sticky=N)
+
+droite_frame.grid(row=1,column=1 ,sticky=W)
+
+
+
+#affiché la frame
+frame.pack(expand=YES)
+
+#affichage
+Cookie.mainloop()
