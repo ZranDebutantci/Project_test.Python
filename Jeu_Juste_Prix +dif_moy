@@ -1,0 +1,28 @@
+from random import randint
+
+def Jeu_Just_Prix():
+    win= randint(20,1000)
+    essy= 10
+    lance=True
+    print("Bienvenue dans le jeux du juste prix")
+    print("vous avez", essy,"tentatives")
+
+    while lance :
+        exp= int(input("entrer un nombre entre 20 et 1000:"))
+        if exp==win :
+            print("c'est gagner!")
+            lance=False
+
+        elif exp > win :
+            essy-=1
+            print("c'est moins! il vous reste",essy,"tentatives...")
+        elif exp < win:
+            essy-=1
+            print("C'est plus! Il vous reste",essy,"tentatives...")
+
+        if essy <1 :
+            print("dommage , vous avez perdue TwT"
+                  "le reslutat etait:",win)
+            break
+
+Jeu_Just_Prix()
