@@ -1,0 +1,41 @@
+import  random
+
+def Jeu_Pierre_F_Sisceau() :
+    deh =["Pierre","Feuille","Sisceau"]
+    print("Choix disponible",deh)
+    ordi= random.choice(deh)
+    chance=1
+
+    print("Bienvenue dans le jeu du Pierre Feuille Sisceau!"
+          "Vous aller jouer contre la machine ^^"
+          "Et vous ne disposer que d'une seul manche.")
+
+    while chance >= 1:
+        joueur= input("Veillez faire votre choix (Pierre ,Feuille ,Sisceau):->")
+        if  joueur== ordi :
+            print("Vous êtes en egalité ! veuillez recommencer!")
+
+
+        elif ( joueur=="Pierre" and ord=="Feuille") or \
+             ( joueur=="Feuille" and ord=="Sisceau")or \
+             ( joueur=="Sisceau" and ord=="Pierre"):
+            print("Dommage ,vous avez perdu "
+                  "la machine a jouer:",ordi)
+            chance-=1
+
+        else:
+            print("Bravo ! Vous avez gagner!"
+                  "la machine a jouer",ordi)
+            chance-=1
+
+
+    print("Fin de la partie...")
+    rebook= input("Voulez vous recommencer?(Oui/Non):->")
+    if rebook=="Oui" :
+        Jeu_Pierre_F_Sisceau()
+
+    elif rebook=="Non" :
+        print("Fin du jeu, Merci d'avoir jouer...")
+
+
+Jeu_Pierre_F_Sisceau()
