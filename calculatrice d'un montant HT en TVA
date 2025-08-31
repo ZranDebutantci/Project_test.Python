@@ -1,0 +1,44 @@
+#1:importer le module tk
+from tkinter import *
+
+
+#cree la focntion qui calcul le montant TVA
+def Calcul_tva():
+  global r_ht, r_ttc
+  #convertir en float le montant ht
+  pht=float(r_ht.get())
+  #faire le calcule avec 25%
+  r_ttc=round(pht*(1+(25/100)),2)
+  #actualiser le calcule
+  r_ttcLabel.configure(text="le montant ttc est de"+str(r_ttc),font=("courrier",15))
+
+#Creer la fenetre principal
+riri=Tk()
+riri.title("Calcule de Tva")
+riri.geometry("380x330")
+riri.minsize(305,310)
+riri.config(background='#87CFC6')
+
+#gener du texte
+text_label=Label(riri,text="Interface de Calcule de TVA",bg='#63679E',font=("courrier",16))
+text_label.grid(row=1,column=0,padx=50,pady=10)
+text_label2=Label(riri,text="entrer le montant HT hors taxe",font=("courrier",14))
+text_label2.grid(row=2,column=0,padx=50)
+r_ht=StringVar()
+r_ht.set(" ")
+saisir_ht= Entry(riri,textvariable=r_ht,width=17,font=("courrier",17),bg='#5C89BA')
+saisir_ht.grid(row=3,column=0,padx=50)
+#taper le code du texte et champ de recuperation du r_ttc
+text_label3=Label(riri,text="entrer le montant tva en %",font=("courrier",16),bg='#87CFC6')
+text_label3.grid(row=4,column=0,padx=50,pady=8)
+r_ttc=StringVar()
+r_ttc.set(" ")
+saisir_ttc=Entry(riri,textvariable=r_ttc,font=("courrier",15),bg='#7786BA')
+saisir_ttc.grid(row=5,column=0,padx=50,pady=6)
+txt_bt= Button(riri,text="CALCULER",width=16,font=("courrier",15),bg='#3E5280',command=Calcul_tva)
+txt_bt.grid(row=6,column=0,padx=50,pady=7)
+r_ttcLabel=Label(text="Le montant TVA est",font=("courrier",15))
+r_ttcLabel.grid(row=7, column=0,padx=50,pady=20 )
+
+
+riri.mainloop()
