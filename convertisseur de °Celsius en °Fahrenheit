@@ -1,0 +1,35 @@
+#1:importer tk
+from tkinter import *
+
+#2:definir la fonction qui calcule et renvois le resulta
+
+def Convertisseur():
+    global cel,fah
+    var=int(cel.get())
+    fah=round(32+(var*(9/5)),2)
+    Fah_label.configure(text="on obtient en °F:"+str(fah),font=("courrier",14))
+
+
+#creer l'interface graphique
+
+#0:la personnalisé
+con_ver= Tk()
+con_ver.title("Convertisseur de °C en °F")
+con_ver.geometry("380x230")
+con_ver.minsize(250, 200)
+con_ver.config(background='#C98C5A')
+#1:creer les dif champs
+
+text_ent=Label(con_ver,text="entrer la valeur en de°C",fg='#00E339',bg='#C98C5A',font=("courier",14))
+text_ent.grid(row=1,column=0,padx=50)
+cel=StringVar()
+cel.set(" ")
+saisi_cel=Entry(con_ver,textvariable=cel,font=("courrier",14))
+saisi_cel.grid(row=2,column=0,padx=50,pady=5)
+btn= Button(con_ver,text="CONVERTIR",font=("courrier",14),bg='#A074A6',command=Convertisseur)
+btn.grid(row=3,padx=50,pady=7)
+Fah_label=Label(con_ver,text="On obtient en °F:",font=("courrier",15))
+Fah_label.grid(row=4,column=0,padx=50,pady=6)
+
+
+con_ver.mainloop()
