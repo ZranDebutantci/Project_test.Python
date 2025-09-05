@@ -1,0 +1,76 @@
+from tkinter import *
+
+#defini la fonction calculator
+def Calculateur():
+    try:
+        expr= entrer.get()
+        expr= expr.replace("×","*")
+        expr= expr.replace(",",".")
+        resluta= round(eval(expr),3)
+        entrer.delete(0,END)
+        entrer.insert(0,resluta)
+    except:
+        entrer.delete(0,END)
+        entrer.insert(0,"error")
+
+#definir la fonction qui suprime les valeur du champ une par une
+def delete_val():
+    current= entrer.get()
+    if current:
+        entrer.delete(len(current)-1,END)
+
+#definir la fonction qui supprime tout le contenu du champ
+def delete_champ():
+    entrer.delete(0,END)
+
+#definir la fenetre
+Calcul=Tk()
+Calcul.title("My Calculator")
+Calcul.config(bg='#6C7491')
+Calcul.resizable(False,False)
+
+#definir le champ d'entrer
+entrer= Entry(Calcul,width=50,borderwidth=5)
+entrer.pack(side=TOP,padx=10, pady=10)
+
+#definir les bouttons
+bouts=[
+    "7","8","9","+",
+    "6","5","4","-",
+    "3","2","1","×",
+    ",","0","/","=",
+    "DEL","AC"
+]
+#definir une frame pour les boutons
+frame_bts= Frame(Calcul,bg="#1A1D24")
+frame_bts.pack(side=TOP,padx=10,pady=10)
+
+#creation de la boucle pour les bouton
+e=0
+f=0
+for bout in bouts:
+    if bout=="=":
+        cmd= Calculateur
+        bg_couleur="#C2362B"
+
+    elif bout=="DEL":
+        cmd= delete_val
+        bg_couleur="#1E30A8"
+    elif bout=="AC":
+        cmd= delete_champ
+        bg_couleur= "#1E30A8"
+    elif bout in ["+","-","×",",","/"]:
+        cmd= lambda x=bout: entrer.insert(END,x)
+        bg_couleur= "#BA722C"
+
+    else:
+        cmd=lambda x= bout: entrer.insert(END,x)
+        bg_couleur="white"
+    Button(frame_bts,text=bout,width=8,height=4,font=("courrier",10),command=cmd,bg=bg_couleur).grid(row=e,column=f,padx=5,pady=5)
+    f+=1
+    if f>3:
+        f=0
+        e+=1
+
+Calcul.bind("<BackSpace>", lambda  event:delete_val())
+Calcul.mainloop()
