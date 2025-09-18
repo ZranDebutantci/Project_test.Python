@@ -1,0 +1,74 @@
+from random import  randint,choice
+#1: definir son alphapet
+
+alphab_minx=[chr(e) for e in range(97,123)]
+alphab_majx=[chr(e) for e in range(67,91)]
+chiffres=[chr(e) for e in range(48,58)]
+car_spe=['@','#',':',',','*','~','%','!','?','.','=','+','_','µ',';','£','§','$']
+
+star= True
+print("Bienvenue sur votre generateur de mot de passe")
+#2:faire une boucle qui retourne un mot de pass , munie d'arguments
+while star:
+    minx=input("souhaitez vous des caractere minuscule dans votre code?(oui/non):->")
+    minx= True if minx.lower=="oui" else False
+
+    majx= input("desirez vous des caractére majuscule dans votre mot de passe ? (oui/non):->")
+    majx=True if majx.lower()=="oui" else False
+
+    car_chiff=input("souhaitez vous des chiffres dans votre mot de passe? :->")
+    car_chiff= True if car_chiff.lower()=="oui" else False
+
+    caract_spe=input("Souhaitez vous des caractere speciaux dans votre mot de passe ?(oui/non):->")
+    caract_spe= True if caract_spe.lower()=="oui" else False
+
+    #3: verifier que l'utilisateur a bien choisir au moins un caractere
+    if not (minx or majx or car_chiff or caract_spe):
+        print("veuillez entrer au moins un type de caractere")
+        continue
+
+    #4: verifier que l'utilisateur entre une valeur correct
+    try:
+        Y = int(input("veuillez entrer la longueur de votre mot de passe:->"))
+    except ValueError:
+        print("entrer une valeur valide")
+        continue
+
+    #5: creer une fonction qui faire la conception du mot de passa
+    def fonct_pass_world(Y,minx,majx,car_chiff, caract_spe):
+    # se faire son dictionnaire
+        alphabet = dict()
+        hello=0
+
+        if minx:
+            alphabet[hello]= alphab_minx
+            hello+=1
+        if majx:
+            alphabet[hello]= alphab_majx
+            hello+=1
+        if car_chiff:
+            alphabet[hello]= chiffres
+            hello+=1
+        if caract_spe:
+            alphabet[hello]= alphab_minx
+            hello+=1
+#4:faire une boucle iterative sur y
+        paswd=' '
+        for _ in range(Y):
+            cle= randint(0,hello-1)
+            paswd+= choice(alphabet[cle])
+        return  paswd
+
+    #5:entrer une derniere question pour mettre fin a la boucle
+    enr=input("votre mon de passe est pret a etre generer , le voulez vous maintenant?(oui):->")
+    if enr.lower()=="oui":
+        print("votre mot de passe est le suivant:->",fonct_pass_world(Y, minx, majx, car_chiff, caract_spe))
+
+    star=False
+
+    generer= input("voulez vous en generer un autre ?(oui/non):->")
+    if generer.lower()=="oui":
+        star=True
+    else:
+        print("fin du programme...")
+        break
